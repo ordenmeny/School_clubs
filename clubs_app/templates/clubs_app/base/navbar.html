@@ -1,4 +1,7 @@
 {% load static %}
+{% load custom_filters %}
+
+
 <nav class="navbar navbar-expand-md height-navbar">
         <div class="container-xl container-lg-fluid container-900 container-sm">
           <a class="navbar-brand" href="#">
@@ -20,15 +23,28 @@
               </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-xl-3 mx-md-1 btn-lg">
-                    <a class="nav-link btn btn-regist rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Регистрация</a>
-                </li>
-                <li class="nav-item mx-xl-3 mx-md-1 btn-lg">
-                    <a class="nav-link btn btn-signin rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Войти</a>
+
+                {% if user.is_authenticated %}
+              <li class="nav-item mx-xl-3 mx-md-1 btn-lg">
+                    <a href="{% url 'login' %}" class="nav-link btn btn-signin rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">{{ user.username |split_string|first|truncatechars:20 }}</a>
                 </li>
                 <li class="nav-item mx-xl-3 mx-md-1 btn-sm">
-                    <a class="nav-link btn btn-regist rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Войти</a>
+                    <a href="{% url 'login' %}" class="nav-link btn btn-regist rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">{{ user.username |split_string|first|truncatechars:10 }}</a>
                 </li>
+              {% else %}
+              <li class="nav-item mx-xl-3 mx-md-1 btn-lg">
+                    <a href="{% url 'signup' %}" class="nav-link btn btn-regist rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Регистрация</a>
+                </li>
+                <li class="nav-item mx-xl-3 mx-md-1 btn-lg">
+                    <a href="{% url 'login' %}" class="nav-link btn btn-signin rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Войти</a>
+                </li>
+                <li class="nav-item mx-xl-3 mx-md-1 btn-sm">
+                    <a href="{% url 'login' %}" class="nav-link btn btn-regist rounded-pill ps-4 pe-4 pt-2 pb-2" type="submit">Войти</a>
+                </li>
+              {% endif %}
+
+
+
             </ul>
           </div>
         </div>
