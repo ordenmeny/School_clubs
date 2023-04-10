@@ -21,7 +21,7 @@
 <div class="container"
      style="background-color: #c8dbef; border-radius: 30px; padding-top: 30px; padding-bottom: 40px; padding-left: 40px; padding-right: 40px;">
     <h2 style="font-size: 50px; color: black" class="text-center">Создать клуб</h2><br><br>
-    <form>
+    <form method="post"> {% csrf_token %}
         <div class="mb-3">
             {{ form.name_club }}<br>
         </div>
@@ -48,6 +48,11 @@
     </form>
 </div>
 {% endcomment %}
+
+<br><br><br><br><br><br>
+
+{% include 'clubs_app/base/footer.html' %}
+
 
 </body>
 </html>
