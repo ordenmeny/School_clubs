@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 
 class ClubModel(models.Model):
@@ -30,3 +31,10 @@ class ClubModel(models.Model):
 
     def __str__(self):
         return self.name_club
+
+
+# class ArticlesModel(models.Model):
+#     pass
+    # club = models.ForeignKey... # чтобы ставилось по умолчанию(?????)
+    # title = models.CharField(max_length=100)
+    # text_main = models.TextField()
