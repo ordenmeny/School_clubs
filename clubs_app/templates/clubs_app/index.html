@@ -16,13 +16,29 @@
 </head>
 <body>
 {% include 'clubs_app/base/navbar.html' %}
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <br>
+            <div class="container">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <br>
+
+        {% endfor %}
+    </div>
+{% endif %}
+
 <div class="container-fluid intro-block" style="background: #223A76; padding-top: 70px; padding-bottom: 70px;">
     <h1 style="font-size: 90px; font-weight: 600; color:white" class="text-center">Школьные клубы</h1><br>
     <div class="text-center" style="width: 100%;">
         <a class="btn btn-join-club-intro" style="">Вступить в клуб</a>
     </div>
 </div>
-
 
 
 <br><br><br>
@@ -48,7 +64,8 @@
                 <img src="{% static 'images/home_page/2.jpg' %}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="text-center">
-                        <a href="{% comment %}{% url 'clubs_app:create_club' %} {% endcomment %}" style="text-decoration: none;" class="text-center intro-block-links">Создать клуб <i
+                        <a href="{% url 'clubs_app:create_club' %}"
+                           style="text-decoration: none;" class="text-center intro-block-links">Создать клуб <i
                                 class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
@@ -83,7 +100,8 @@
 <div class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4  g-4">
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/itcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/itcard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -95,7 +113,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/drawcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/drawcard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -107,7 +126,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/sportcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/sportcard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -120,7 +140,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/gamescard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/gamescard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -132,7 +153,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/literatcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/literatcard.png' %}"
+                 class="card-img-top d-flex justify-content-center" alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -144,7 +166,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/chattingcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/chattingcard.png' %}"
+                 class="card-img-top d-flex justify-content-center" alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -156,7 +179,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/musiccar.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/musiccar.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -169,7 +193,8 @@
     </div>
     <div class="col hide-992">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/cultcard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/cultcard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -181,7 +206,8 @@
     </div>
     <div class="col">
         <div class="card h-100" style="background-color: #c8dbef;">
-            <img src="{% static 'images/home_page/deliecard.png' %}" class="card-img-top d-flex justify-content-center" alt="..."
+            <img src="{% static 'images/home_page/deliecard.png' %}" class="card-img-top d-flex justify-content-center"
+                 alt="..."
                  style="width: 90%;display:block; margin:auto;">
             <div class="card-body">
                 <div class="text-center d-flex align-items-center justify-content-center"
@@ -197,7 +223,8 @@
 </div>
 <br><br><br><br><br><br>
 
-<div class="bg-image" style="background-image: url('{% static 'images/home_page/blockBI.png' %}'); padding-bottom: 40px;">
+<div class="bg-image"
+     style="background-image: url('{% static 'images/home_page/blockBI.png' %}'); padding-bottom: 40px;">
     <div class="container">
         <div class="support-block-text"
              style="background-color: #223A76; border-radius: 10px 100px / 120px; padding-left: 30px; padding-top: 15px; padding-bottom: 15px; padding-right: 30px;">

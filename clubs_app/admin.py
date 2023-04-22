@@ -3,7 +3,7 @@ from .models import ClubModel, CatClubModel
 
 
 class ClubModelAdmin(admin.ModelAdmin):
-    list_display = ('title_club', 'cat_club')
+    list_display = ('id', 'title_club', 'cat_club')
     list_display_links = ('title_club', 'cat_club')
 
 

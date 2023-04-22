@@ -19,9 +19,6 @@
 {% include 'clubs_app/base/navbar.html' %}
 <div class="container-fluid intro-block" style="background: #223A76; padding-top: 70px; padding-bottom: 70px;">
     <h1 style="font-size: 90px; font-weight: 600; color:white" class="text-center">Создать клуб</h1><br>
-{#    <div class="text-center" style="width: 100%;">#}
-{#        <a class="btn btn-join-club-intro" style="">Вступить в клуб</a>#}
-{#    </div>#}
 </div>
 <br><br>
 
@@ -29,11 +26,18 @@
 <div class="container">
     <form method="post" action="{% url 'clubs_app:create_club' %}">
         {% csrf_token %}
-        {{ form.as_p}}
-        <button type="submit">Создать</button>
+{#        {{ form.title_club }}#}
+{#        <div class="input-group mb-3">#}
+{#            <span class="input-group-text" id="basic-addon1">@</span>#}
+{#            <input type="text" class="form-control" placeholder="Username" aria-label="Username"#}
+{#                   aria-describedby="basic-addon1">#}
+
+            {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Создать</button>
     </form>
 </div>
 
+<br><br><br><br><br><br><br><br><br><br>
 {% include 'clubs_app/base/footer.html' %}
 
 
