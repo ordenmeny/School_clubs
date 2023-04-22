@@ -1,10 +1,12 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 
 class ClubModel(models.Model):
     # manager = models.ForeignKey(get_user_model(), default=get_user_model, null=True, max_length=1024, on_delete=models.CASCADE)
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     title_club = models.CharField(max_length=128)
     cat_club = models.ForeignKey('CatClubModel', on_delete=models.CASCADE)
     info_club = models.TextField()
