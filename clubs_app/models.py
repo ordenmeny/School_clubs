@@ -1,40 +1,32 @@
 from django.db import models
-from django.conf import settings
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 
 class ClubModel(models.Model):
-    types_of_clubs = [
-        ("Тип_не_выбран", "Тип клуба:"),
-        ("IT", "IT"),
-        ("Спорт", "Спорт"),
-        ("Литература", "Литература"),
-        ("Рисование", "Рисование"),
-        ("Культура", "Культура"),
-        ("Музыка", "Музыка"),
-        ("Видеоигры", "Видеоигры"),
-        ("Общение", "Общение"),
-        ("Рукоделие", "Рукоделие"),
-    ]
-
-    paid_or_free = [
-        ("Не_выбрано", "Платно или бесплатно:"),
-        ("Платно", "Платно"),
-        ("Бесплатно", "Бесплатно")
-    ]
-
-    name_club = models.CharField(null=True, blank=True, max_length=30)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    type_club = models.CharField(max_length=100, choices=types_of_clubs, default='Тип_не_выбран')
-    paid_free = models.CharField(max_length=100, choices=paid_or_free, default='Не_выбрано')
-    info_club = models.TextField(null=True, blank=True)
+    manager = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
+    title_club = models.CharField(max_length=128)
+    cat_club = models.ForeignKey('CatClubModel', on_delete=models.CASCADE)
+    info_club = models.TextField()
+    days_event = models.CharField(max_length=32, null=True)
+    time_start_event = models.TimeField(null=True)
+    duration_event = models.TimeField(null=True)
 
     def __str__(self):
-        return self.name_club
+        return self.title_club
+
+    class Meta:
+        verbose_name = 'Клубы'
+        verbose_name_plural = 'Клубы'
 
 
-# class ArticlesModel(models.Model):
-#     pass
-    # club = models.ForeignKey... # чтобы ставилось по умолчанию(?????)
-    # title = models.CharField(max_length=100)
-    # text_main = models.TextField()
+class CatClubModel(models.Model):
+    cat = models.CharField(max_length=128, verbose_name="Категория")
+    slug = models.SlugField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.cat
+
+    class Meta:
+        verbose_name = 'Категории клубов'
+        verbose_name_plural = 'Категории клубов'

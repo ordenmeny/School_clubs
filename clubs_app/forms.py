@@ -2,21 +2,18 @@ from django import forms
 from .models import ClubModel
 
 
-class CreateClubForm(forms.ModelForm):
+class FormClubModel(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['cat_club'].empty_label = 'Тип клуба не выбран:'
+        self.fields['cat_club'].label = 'Тип клуба'
+    
     class Meta:
         model = ClubModel
-        fields = ('name_club', 'type_club', 'paid_free', 'info_club')
+        fields = ["title_club", "cat_club", "info_club", "days_event", "time_start_event", "duration_event"]
 
         widgets = {
-            'name_club': forms.TextInput(attrs={'class': 'form-control style-placeholder',
-                                                'style': 'height:70px; border-radius:20px; font-size:30px; font-weight:400',
-                                                'placeholder': 'Название клуба:'}),
-            'type_club': forms.Select(attrs={'class': 'form-control form-select',
-                                             'style': 'height:70px; border-radius:20px;font-size:30px; font-weight:400'}),
-            'paid_free': forms.Select(attrs={'class': 'form-control form-select',
-                                             'style': 'height:70px; border-radius:20px;font-size:30px; font-weight:400'}),
+            'title_club': forms.TextInput(attrs={'class': 'form-control'}),
+            'cat_club': forms.Select(attrs={'class': 'form-control'}),
 
-            'info_club': forms.Textarea(
-                attrs={'class': 'form-control', 'style': 'border-radius: 20px !important; font-size:30px; font-weight:400;',
-                       'rows': 3, 'placeholder': 'Добавь информацию о клубе:'})
         }

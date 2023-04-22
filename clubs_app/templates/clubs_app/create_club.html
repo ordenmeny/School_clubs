@@ -17,39 +17,22 @@
 <body>
 
 {% include 'clubs_app/base/navbar.html' %}
-<br><br><br>
-<div class="container"
-     style="background-color: #c8dbef; border-radius: 30px; padding-top: 30px; padding-bottom: 40px; padding-left: 40px; padding-right: 40px;">
-    <h2 style="font-size: 50px; color: black" class="text-center">Создать клуб</h2><br><br>
-    <form method="post"> {% csrf_token %}
-        <div class="mb-3">
-            {{ form.name_club }}<br>
-        </div>
-
-        <div class="mb-3">
-            {{ form.type_club }}<br>
-        </div>
-
-        <div class="mb-3">
-             {{ form.paid_free }}<br>
-        </div>
-
-             {{ form.info_club }}<br>
-
-        <button type="submit" class="btn create-club-btn">Создать клуб</button>
-    </form>
+<div class="container-fluid intro-block" style="background: #223A76; padding-top: 70px; padding-bottom: 70px;">
+    <h1 style="font-size: 90px; font-weight: 600; color:white" class="text-center">Создать клуб</h1><br>
+{#    <div class="text-center" style="width: 100%;">#}
+{#        <a class="btn btn-join-club-intro" style="">Вступить в клуб</a>#}
+{#    </div>#}
 </div>
+<br><br>
 
-{% comment %}
+
 <div class="container">
-    <form action="" method="post">{% csrf_token %}
-        {{ form.name_club }}
-        <input type="submit" value="Save" class="btn btn-success">
+    <form method="post" action="{% url 'clubs_app:create_club' %}">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">Создать</button>
     </form>
 </div>
-{% endcomment %}
-
-<br><br><br><br><br><br>
 
 {% include 'clubs_app/base/footer.html' %}
 
