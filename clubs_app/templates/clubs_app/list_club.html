@@ -1,0 +1,60 @@
+{% extends 'clubs_app/base/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock %}
+{% block title %}Наши клубы{% endblock title %}
+
+{% block content %}
+    <br><br><br>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for club in club_model %}
+
+                <div class="col ">
+                    <div class="card h-100 list-club-table">
+                        {#                    <img src="..." class="card-img-top" alt="...">#}
+                        <div style="border: 1px solid #223a76; height:80px; background: #223a76"
+                             class="d-flex align-items-center justify-content-center">
+                            <h3 style="color:white !important;" class="">{{ club.title_club }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center d-flex align-items-center justify-content-center"
+                                 style="background-color: white; border-radius: 10px 100px / 120px; height: 50px; width: 250px">
+                                <a href="#" style="text-decoration: none; color: black"
+                                   class="text-center intro-block-links">{{ club.cat_club }}</a>
+                            </div>
+                            <br>
+                            {% if club.price_club %}
+                                <h4><i class="bi bi-wallet2"></i> {{ club.price_club }}</h4><br>
+                            {% endif %}
+
+
+                            {% if club.days_event %}
+                                <h4><i class="bi bi-calendar3"></i> {{ club.days_event }}</h4><br>
+                            {% endif %}
+
+
+
+                            {% if club.time_event %}
+                                <h4><i class="bi bi-alarm"></i> {{ club.time_event }}</h4><br>
+                            {% endif %}
+
+                            <h3><i class="bi bi-person-circle"></i> {{ club.manager }}</h3>
+
+                        </div>
+                        <div class="card-footer" style="background: #c8dbef">
+                            <a class="btn btn-primary  mx-auto" style="display: block" href="{% url 'clubs_app:join_club' club_id=club.pk %}">Вступить</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+    <br><br><br>
+
+{% endblock content %}

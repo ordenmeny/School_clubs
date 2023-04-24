@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md height-navbar">
         <div class="container-xl container-lg-fluid container-900 container-sm">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="{% url 'clubs_app:home_page' %}">
             <img src="{% static 'images/logos/logo.svg' %}" alt="Logo" class="d-inline-block align-text-top logo-adaptive">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link mx-xl-3 mx-lg-1" href="#">Главная</a>
+                <a class="nav-link mx-xl-3 mx-lg-1" href="{% url 'clubs_app:home_page' %}">Главная</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link mx-xl-3 mx-lg-1" href="#">Категории</a>
