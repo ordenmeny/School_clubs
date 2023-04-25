@@ -28,9 +28,11 @@ class ClubModel(models.Model):
 class CatClubModel(models.Model):
     cat = models.CharField(max_length=128, verbose_name="Категория")
     slug = models.SlugField(max_length=255, unique=True)
+    image = models.ImageField(upload_to='photos/', null=True)
 
     def __str__(self):
         return self.cat
+
 
     class Meta:
         verbose_name = 'Категории клубов'

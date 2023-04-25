@@ -6,8 +6,13 @@ from .forms import *
 from .models import *
 
 
-class HomePage(TemplateView):
-    template_name = 'clubs_app/index.html'
+
+def index(request):
+    clubs_cat = CatClubModel.objects.all()
+    context = {
+        'clubs_cat': clubs_cat,
+    }
+    return render(request, template_name='clubs_app/index.html', context=context)
 
 
 @login_required
