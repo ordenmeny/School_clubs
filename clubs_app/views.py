@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
+from pytils.translit import slugify
 
 
 def index(request):
@@ -20,6 +21,7 @@ def create_club(request):
         form = FormClubModel(request.POST)
         if form.is_valid():
             form.instance.manager = request.user
+            form.instance.slug_club = slugify(form.instance.title_club)
             form.save()
             messages.success(request, 'Клуб создан')
             return redirect('clubs_app:home_page')
