@@ -6,7 +6,6 @@ from .forms import *
 from .models import *
 
 
-
 def index(request):
     clubs_cat = CatClubModel.objects.all()
     context = {
@@ -34,8 +33,8 @@ def create_club(request):
 
 
 @login_required
-def list_club(request):
-    club_model = ClubModel.objects.all()
+def list_club(request, cat_slug):
+    club_model = ClubModel.objects.filter(cat_club=CatClubModel.objects.get(slug=cat_slug))
     context = {
         'club_model': club_model,
     }

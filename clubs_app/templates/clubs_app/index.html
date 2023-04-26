@@ -38,7 +38,7 @@
                     <img src="{% static 'images/home_page/1.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="text-center">
-                            <a href="{% url 'clubs_app:list_club' %}" style="text-decoration: none;"
+                            <a href="#" style="text-decoration: none;"
                                class="text-center intro-block-links">Наши клубы <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
@@ -81,7 +81,7 @@
 
     <p style="font-size: 50px; font-weight: 600; color: black;" class="text-center">Выбери свое направление</p><br>
 
-    <div class="container">
+    <div class="container" style="background-color: #c8dbef; border-radius: 30px; padding-top: 30px; padding-bottom: 40px; padding-left: 40px; padding-right: 40px;">
         <div class="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4  g-4">
             {% for club in clubs_cat %}
                 <div class="col">
@@ -97,8 +97,8 @@
                         <div class="card-body">
                             <div class="text-center d-flex align-items-center justify-content-center"
                                  style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">
-                                <a href="#" style="text-decoration: none; color: white"
-                                   class="text-center intro-block-links">{{ club.cat }}</a>
+                                <a href="{{ club.get_absolute_url }}" style="text-decoration: none; color: white"
+                                   class="text-center intro-block-links">{{ club.cat }} !</a>
                             </div>
                         </div>
                     </div>
