@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'clubs_app',
     'accounts',
+    'dashboard_app',
 ]
 
 MIDDLEWARE = [

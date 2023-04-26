@@ -34,8 +34,8 @@ class CatClubModel(models.Model):
         return self.cat
 
     def get_absolute_url(self):
-        # return reverse('clubs_app:list_club', kwargs={'cat_slug': self.slug})
-        return f'list_club/{self.slug}'
+        return reverse('clubs_app:list_club', kwargs={'cat_slug': self.slug})
+        # return f'list_club/{self.slug}'
 
     class Meta:
         verbose_name = 'Категории клубов'

@@ -98,133 +98,13 @@
                             <div class="text-center d-flex align-items-center justify-content-center"
                                  style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">
                                 <a href="{{ club.get_absolute_url }}" style="text-decoration: none; color: white"
-                                   class="text-center intro-block-links">{{ club.cat }} !</a>
+                                   class="text-center intro-block-links">{{ club.cat }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
             {% endfor %}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/drawcard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">рисование</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/sportcard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">спорт</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/gamescard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">видеоигры</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/literatcard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center" alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">литература</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/chattingcard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center" alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">общение</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/musiccar.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7;  height: 70px; border-radius: 10px 100px / 120px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">музыка</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col hide-992">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/cultcard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">культура</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col">#}
-            {#                <div class="card h-100" style="background-color: #c8dbef;">#}
-            {#                    <img src="{% static 'images/home_page/deliecard.png' %}"#}
-            {#                         class="card-img-top d-flex justify-content-center"#}
-            {#                         alt="..."#}
-            {#                         style="width: 90%;display:block; margin:auto;">#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="text-center d-flex align-items-center justify-content-center"#}
-            {#                             style="background-color: #2B74B7; border-radius: 10px 100px / 120px; height: 70px;">#}
-            {#                            <a href="#" style="text-decoration: none; color: white"#}
-            {#                               class="text-center intro-block-links">рукоделие</a>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-
-
         </div>
     </div>
     <br><br><br><br><br><br>

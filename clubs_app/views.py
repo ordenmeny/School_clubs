@@ -42,11 +42,6 @@ def list_club(request, cat_slug):
 
 
 def join_club(request, club_id):
-    # №1
-    # club = ClubModel.objects.get(pk=club_id)
-    # club.member.set([request.user.pk])
-
-    # №2
     club = ClubModel.objects.get(pk=club_id)  # получить экземпляр класса
     club.member.add(request.user.id)
 
