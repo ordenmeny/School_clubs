@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from clubs_app.models import ClubModel
+from .forms import ChangeClubData
 
 
 def check_user_club(request, slug_club):
@@ -10,8 +11,24 @@ def check_user_club(request, slug_club):
 
 @login_required
 def index(request, slug_club):
+    club = ClubModel.objects.get(slug_club=slug_club)
+
+    initial_data = {
+        'title_club': club.title_club,
+        'cat_club': club.cat_club,
+        'info_club': club.info_club,
+        'days_event': club.days_event,
+        'time_event': club.time_event,
+        'price_club': club.price_club,
+    }
+
+    form_change_club_data = ChangeClubData(initial=initial_data)
+
+    context = {
+        'form': form_change_club_data,
+    }
+
     if check_user_club(request, slug_club):
-        return render(request, template_name='dashboard_app/index.html')
+        return render(request, template_name='dashboard_app/index.html', context=context)
     else:
         return redirect('clubs_app:home_page')
-
