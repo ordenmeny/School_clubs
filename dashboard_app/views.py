@@ -2,15 +2,37 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from clubs_app.models import ClubModel
 from .forms import ChangeClubData
+from django.contrib import messages
+
+
+
+# !!!
+# Баг: не дает доступ после логининга
+def members(request, slug_club):
+    if check_user_club(request, slug_club):
+        messages.success(request, 'Доступ закрыт')
+        return check_user_club(request, slug_club)
+
+    club = ClubModel.objects.get(slug_club=slug_club)
+    context = {
+        'members': club.member.all(),
+    }
+    return render(request, template_name='dashboard_app/members.html', context=context)
 
 
 def check_user_club(request, slug_club):
-    if request.user == ClubModel.objects.get(slug_club=slug_club).manager:
-        return True
+    if not (request.user == ClubModel.objects.get(slug_club=slug_club).manager):
+        return redirect('clubs_app:home_page')
+    else:
+        return False
 
 
-@login_required
+# @login_required
 def index(request, slug_club):
+    if check_user_club(request, slug_club):
+        messages.success(request, 'Доступ закрыт')
+        return check_user_club(request, slug_club)
+
     club = ClubModel.objects.get(slug_club=slug_club)
 
     initial_data = {
@@ -42,7 +64,4 @@ def index(request, slug_club):
         'form': form_change_club_data,
     }
 
-    if check_user_club(request, slug_club):
-        return render(request, template_name='dashboard_app/index.html', context=context)
-    else:
-        return redirect('clubs_app:profile')
+    return render(request, template_name='dashboard_app/index.html', context=context)

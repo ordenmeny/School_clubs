@@ -1,0 +1,30 @@
+{% extends 'dashboard_app/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Участники клуба</h1><br>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Имя участника</th>
+                <th scope="col">Почта</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for member in members %}
+                <tr>
+                    <td style="" class="">{{ member.pk }}</td>
+                    <td>{{ member.username }}</td>
+                    <td>{{ member.email }}</td>
+                    <td><a class="btn btn-danger btn-sm">Удалить</a></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock content %}
