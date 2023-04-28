@@ -22,7 +22,21 @@ def index(request, slug_club):
         'price_club': club.price_club,
     }
 
-    form_change_club_data = ChangeClubData(initial=initial_data)
+    if request.method == 'POST':
+        form_change_club_data = ChangeClubData(request.POST, initial=initial_data)
+
+        if form_change_club_data.is_valid():
+            club.title_club = form_change_club_data.instance.title_club
+            club.cat_club = form_change_club_data.instance.cat_club
+            club.info_club = form_change_club_data.instance.info_club
+            club.days_event = form_change_club_data.instance.days_event
+            club.time_event = form_change_club_data.instance.time_event
+            club.price_club = form_change_club_data.instance.price_club
+
+            form_change_club_data.save()
+            return redirect('dashboard:profile')
+    else:
+        form_change_club_data = ChangeClubData(initial=initial_data)
 
     context = {
         'form': form_change_club_data,
@@ -31,4 +45,4 @@ def index(request, slug_club):
     if check_user_club(request, slug_club):
         return render(request, template_name='dashboard_app/index.html', context=context)
     else:
-        return redirect('clubs_app:home_page')
+        return redirect('clubs_app:profile')
