@@ -7,7 +7,7 @@ from .models import *
 from pytils.translit import slugify
 
 
-@login_required
+# @login_required
 def index(request):
     clubs_cat = CatClubModel.objects.all()
     context = {

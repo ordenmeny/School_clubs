@@ -5,9 +5,14 @@ from .forms import ChangeClubData
 from django.contrib import messages
 
 
+def check_user_club(request, slug_club):
+    if not (request.user == ClubModel.objects.get(slug_club=slug_club).manager):
+        return redirect('clubs_app:home_page')
+    else:
+        return False
 
-# !!!
-# Баг: не дает доступ после логининга
+
+@login_required
 def members(request, slug_club):
     if check_user_club(request, slug_club):
         messages.success(request, 'Доступ закрыт')
@@ -16,18 +21,12 @@ def members(request, slug_club):
     club = ClubModel.objects.get(slug_club=slug_club)
     context = {
         'members': club.member.all(),
+        'slug_club': slug_club,
     }
     return render(request, template_name='dashboard_app/members.html', context=context)
 
 
-def check_user_club(request, slug_club):
-    if not (request.user == ClubModel.objects.get(slug_club=slug_club).manager):
-        return redirect('clubs_app:home_page')
-    else:
-        return False
-
-
-# @login_required
+@login_required
 def index(request, slug_club):
     if check_user_club(request, slug_club):
         messages.success(request, 'Доступ закрыт')
@@ -55,13 +54,23 @@ def index(request, slug_club):
             club.time_event = form_change_club_data.instance.time_event
             club.price_club = form_change_club_data.instance.price_club
 
-            form_change_club_data.save()
-            return redirect('dashboard:profile')
+            club.save()
+            return redirect('dashboard_app:profile', slug_club=slug_club)
     else:
         form_change_club_data = ChangeClubData(initial=initial_data)
 
     context = {
         'form': form_change_club_data,
+        'slug_club': slug_club,
     }
 
     return render(request, template_name='dashboard_app/index.html', context=context)
+
+
+def delete_member(request, slug_club, id_member):
+    club = ClubModel.objects.get(slug_club=slug_club)
+    member_club = club.member.get(id=id_member)
+
+    club.member.remove(member_club)
+
+    return redirect('dashboard_app:members', slug_club=slug_club)

@@ -18,7 +18,7 @@
                     <td style="" class="">{{ member.pk }}</td>
                     <td>{{ member.username }}</td>
                     <td>{{ member.email }}</td>
-                    <td><a class="btn btn-danger btn-sm">Удалить</a></td>
+                    <td><a class="btn btn-danger btn-sm" href="{% url 'dashboard_app:delete_member' slug_club=slug_club id_member=member.pk %}">Удалить</a></td>
                 </tr>
             {% endfor %}
 
