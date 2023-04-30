@@ -12,8 +12,6 @@ class ChangeClubData(forms.ModelForm):
         self.fields['time_event'].label = 'Изменить время'
         self.fields['price_club'].label = 'Изменить цену'
 
-
-
     class Meta:
         model = ClubModel
         fields = ['title_club', 'cat_club', 'info_club', 'days_event', 'time_event', 'price_club', ]
