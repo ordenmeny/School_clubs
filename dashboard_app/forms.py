@@ -1,5 +1,6 @@
 from django import forms
-from clubs_app.models import ClubModel
+from clubs_app.models import ClubModel, ArticleClubModel
+from ckeditor.widgets import CKEditorWidget
 
 
 class ChangeClubData(forms.ModelForm):
@@ -24,3 +25,11 @@ class ChangeClubData(forms.ModelForm):
             'time_event': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
             'price_club': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
         }
+
+
+class ArticleClubForm(forms.ModelForm):
+    class Meta:
+        model = ArticleClubModel
+        fields = ('title_article', 'text_body', 'image')
+
+        # widgets =

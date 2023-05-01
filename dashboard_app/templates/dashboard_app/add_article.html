@@ -1,0 +1,11 @@
+{% extends 'dashboard_app/base.html' %}
+{% block title_body %}
+    <h1 class="text-center">Добавить статью</h1><br>
+{% endblock title_body %}
+
+{% block content %}
+    <form method="post">{% csrf_token %}
+        {{ form_ck.media }}
+    {{ form_ck.as_p }}
+    </form>
+{% endblock content %}

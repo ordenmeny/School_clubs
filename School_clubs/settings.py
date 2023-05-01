@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'clubs_app',
     'accounts',
     'dashboard_app',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

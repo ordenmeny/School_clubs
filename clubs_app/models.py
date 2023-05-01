@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 
 class ClubModel(models.Model):
@@ -36,8 +37,23 @@ class CatClubModel(models.Model):
 
     def get_absolute_url(self):
         return reverse('clubs_app:list_club', kwargs={'cat_slug': self.slug})
-        # return f'list_club/{self.slug}'
 
     class Meta:
         verbose_name = 'Категории клубов'
         verbose_name_plural = 'Категории клубов'
+
+
+class ArticleClubModel(models.Model):
+    title_article = models.CharField(max_length=128)
+    slug = models.SlugField(max_length=255, unique=True)
+    author_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    club_contains = models.ForeignKey(ClubModel, on_delete=models.CASCADE, null=True)
+    text_body = RichTextField(blank=True, null=True)
+    image = models.ImageField(upload_to='articles/', null=True)
+
+    def __str__(self):
+        return self.title_article
+
+    class Meta:
+        verbose_name = 'Статьи клубов'
+        verbose_name_plural = 'Статьи клубов'

@@ -1,9 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from clubs_app.models import ClubModel
-from .forms import ChangeClubData
+from .forms import ChangeClubData, ArticleClubForm
 from django.contrib import messages
-from django.http import HttpResponse
 
 
 def check_user_club(request, slug_club):
@@ -68,7 +67,11 @@ def index(request, slug_club):
     return render(request, template_name='dashboard_app/index.html', context=context)
 
 
+@login_required
 def delete_member(request, slug_club, id_member):
+    if check_user_club(request, slug_club):
+        messages.success(request, 'Доступ закрыт')
+        return check_user_club(request, slug_club)
     club = ClubModel.objects.get(slug_club=slug_club)
     member_club = club.member.get(id=id_member)
 
@@ -77,5 +80,18 @@ def delete_member(request, slug_club, id_member):
     return redirect('dashboard_app:members', slug_club=slug_club)
 
 
+def content(request):
+    pass
 
 
+@login_required
+def add_article(request, slug_club):
+    form_title = ArticleClubForm()
+    if check_user_club(request, slug_club):
+        messages.success(request, 'Доступ закрыт')
+        return check_user_club(request, slug_club)
+    context = {
+        'slug_club': slug_club,
+        'form_ck': form_title,
+    }
+    return render(request, template_name='dashboard_app/add_article.html', context=context)
