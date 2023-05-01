@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from clubs_app.models import ClubModel
 from .forms import ChangeClubData
 from django.contrib import messages
+from django.http import HttpResponse
 
 
 def check_user_club(request, slug_club):
@@ -74,3 +75,7 @@ def delete_member(request, slug_club, id_member):
     club.member.remove(member_club)
 
     return redirect('dashboard_app:members', slug_club=slug_club)
+
+
+
+

@@ -37,7 +37,10 @@ def create_club(request):
 
 @login_required
 def list_club(request, cat_slug):
-    club_model = ClubModel.objects.filter(cat_club=CatClubModel.objects.get(slug=cat_slug))
+    if cat_slug == 'all_clubs':
+        club_model = ClubModel.objects.all()
+    else:
+        club_model = ClubModel.objects.filter(cat_club=CatClubModel.objects.get(slug=cat_slug))
     context = {
         'club_model': club_model,
     }
@@ -50,3 +53,15 @@ def join_club(request, club_id):
 
     messages.success(request, f'Вы вступили в клуб {club.title_club}')
     return redirect('clubs_app:home_page')
+
+
+@login_required
+def my_clubs(request):
+    club_model = ClubModel.objects.filter(manager=request.user)
+
+    context = {
+        'club_model': club_model,
+        'manager': True,
+    }
+
+    return render(request, template_name='clubs_app/list_club.html', context=context)

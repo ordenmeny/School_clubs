@@ -44,9 +44,20 @@
                             <h3><i class="bi bi-person-circle"></i> {{ club.manager }}</h3>
 
                         </div>
-                        <div class="card-footer" style="background: #c8dbef">
-                            <a class="btn btn-primary  mx-auto" style="display: block" href="{% url 'clubs_app:join_club' club_id=club.pk %}">Вступить</a>
-                        </div>
+
+                        {% if manager %}
+                            <div class="card-footer" style="background: #c8dbef">
+                                <a class="btn btn-primary  mx-auto" style="display: block"
+                                   href="{% url 'dashboard_app:profile' slug_club=club.slug_club %}">В панель управления</a>
+                            </div>
+                        {% else %}
+                            <div class="card-footer" style="background: #c8dbef">
+                                <a class="btn btn-primary  mx-auto" style="display: block"
+                                   href="{% url 'clubs_app:join_club' club_id=club.pk %}">Вступить</a>
+                            </div>
+                        {% endif %}
+
+
                     </div>
                 </div>
 

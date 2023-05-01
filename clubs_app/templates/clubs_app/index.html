@@ -21,7 +21,7 @@
     <div class="container-fluid intro-block" style="background: #223A76; padding-top: 70px; padding-bottom: 70px;">
         <h1 style="font-size: 90px; font-weight: 600; color:white" class="text-center">Школьные клубы</h1><br>
         <div class="text-center" style="width: 100%;">
-            <a class="btn btn-join-club-intro" style="">Вступить в клуб</a>
+            <a class="btn btn-join-club-intro" href="{% url 'clubs_app:list_club' cat_slug='all_clubs' %}">Вступить в клуб</a>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                     <img src="{% static 'images/home_page/1.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="text-center">
-                            <a href="#" style="text-decoration: none;"
+                            <a href="{% url 'clubs_app:list_club' cat_slug='all_clubs' %}" style="text-decoration: none;"
                                class="text-center intro-block-links">Наши клубы <i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
@@ -108,6 +108,8 @@
         </div>
     </div>
     <br><br><br><br><br><br>
+
+
 
     <div class="bg-image"
          style="background-image: url('{% static 'images/home_page/blockBI.png' %}'); padding-bottom: 40px;">
