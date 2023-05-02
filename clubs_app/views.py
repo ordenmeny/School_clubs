@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from pytils.translit import slugify
+from django.db.models import Q
 
 
 # @login_required
@@ -57,11 +58,14 @@ def join_club(request, club_id):
 
 @login_required
 def my_clubs(request):
-    club_model = ClubModel.objects.filter(manager=request.user)
+    # нужно сделать вывод всех клубов, в которых user принимает участие: manager или member
+    # club_model = ClubModel.objects.filter(manager=request.user)
 
+    club_model = set(ClubModel.objects.filter(Q(manager=request.user) | Q(member=request.user)))
     context = {
         'club_model': club_model,
-        'manager': True,
+        'my_clubs': True,
+        # 'my_clubs': ('manager' if ClubModel.manager == request.user else 'member')
     }
 
     return render(request, template_name='clubs_app/list_club.html', context=context)

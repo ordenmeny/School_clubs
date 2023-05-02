@@ -45,12 +45,19 @@
 
                         </div>
 
-                        {% if manager %}
+                        {% if request.user == club.manager %}
                             <div class="card-footer" style="background: #c8dbef">
-                                <a class="btn btn-primary  mx-auto" style="display: block"
-                                   href="{% url 'dashboard_app:profile' slug_club=club.slug_club %}">В панель управления</a>
+                                <a class="btn btn-warning  mx-auto" style="display: block"
+                                   href="{% url 'dashboard_app:profile' slug_club=club.slug_club %}">В панель
+                                    управления</a>
+                            </div>
+                        {% elif request.user in club.member.all %}
+                            <div class="card-footer" style="background: #c8dbef">
+                                <a class="btn btn-success  mx-auto" style="display: block"
+                                   href="{% url 'dashboard_app:profile' slug_club=club.slug_club %}">Смотреть</a>
                             </div>
                         {% else %}
+
                             <div class="card-footer" style="background: #c8dbef">
                                 <a class="btn btn-primary  mx-auto" style="display: block"
                                    href="{% url 'clubs_app:join_club' club_id=club.pk %}">Вступить</a>
