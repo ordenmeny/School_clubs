@@ -1,11 +1,25 @@
 {% extends 'dashboard_app/base.html' %}
 {% block title_body %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="container">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endif %}
     <h1 class="text-center">Добавить статью</h1><br>
 {% endblock title_body %}
 
 {% block content %}
-    <form method="post">{% csrf_token %}
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form_ck.media }}
-    {{ form_ck.as_p }}
+        {{ form_ck.as_p }}
+        <button type="submit" class="btn btn-primary">Сохранить</button>
     </form>
 {% endblock content %}

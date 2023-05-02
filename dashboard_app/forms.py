@@ -28,8 +28,14 @@ class ChangeClubData(forms.ModelForm):
 
 
 class ArticleClubForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     class Meta:
         model = ArticleClubModel
         fields = ('title_article', 'text_body', 'image')
 
-        # widgets =
+        widgets = {
+            'title_article': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'image': forms.FileInput(attrs={'class': 'form-control form-control-lg'})
+        }

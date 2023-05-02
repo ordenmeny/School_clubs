@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.conf import settings
 from ckeditor.fields import RichTextField
 
@@ -44,12 +43,12 @@ class CatClubModel(models.Model):
 
 
 class ArticleClubModel(models.Model):
-    title_article = models.CharField(max_length=128)
+    title_article = models.CharField(max_length=128, verbose_name='Заголовок статьи', unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     author_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     club_contains = models.ForeignKey(ClubModel, on_delete=models.CASCADE, null=True)
-    text_body = RichTextField(blank=True, null=True)
-    image = models.ImageField(upload_to='articles/', null=True)
+    text_body = RichTextField(blank=True, null=True, verbose_name='Контент статьи')
+    image = models.ImageField(upload_to='articles/', null=True, verbose_name='Главное изображение статьи')
 
     def __str__(self):
         return self.title_article
@@ -57,3 +56,6 @@ class ArticleClubModel(models.Model):
     class Meta:
         verbose_name = 'Статьи клубов'
         verbose_name_plural = 'Статьи клубов'
+
+    # def get_absolute_url(self):
+    #     return reverse('')

@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from clubs_app.models import ClubModel
 from .forms import ChangeClubData, ArticleClubForm
 from django.contrib import messages
+from clubs_app.models import ArticleClubModel, ClubModel
+from pytils.translit import slugify
 
 
 def check_user_club(request, slug_club):
@@ -86,10 +88,31 @@ def content(request):
 
 @login_required
 def add_article(request, slug_club):
-    form_title = ArticleClubForm()
     if check_user_club(request, slug_club):
         messages.success(request, 'Доступ закрыт')
         return check_user_club(request, slug_club)
+
+    if request.method == 'POST':
+        form_title = ArticleClubForm(request.POST, request.FILES)
+        if form_title.is_valid():
+            model_article = ArticleClubModel.objects.create(
+                title_article=form_title.instance.title_article,
+                slug=slugify(form_title.instance.title_article),
+                author_user=request.user,
+                club_contains=ClubModel.objects.get(slug_club=slug_club),
+                text_body=form_title.instance.text_body,
+                image=form_title.instance.image,
+            )
+            model_article.save()
+            messages.success(request, 'Статья добавлена')
+            return redirect('dashboard_app:add_article', slug_club=slug_club)
+
+        else:
+            messages.success(request, 'Ошибка')
+            redirect('dashboard_app:add_article', slug_club=slug_club)
+    else:
+        form_title = ArticleClubForm()
+
     context = {
         'slug_club': slug_club,
         'form_ck': form_title,
