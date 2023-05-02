@@ -69,3 +69,13 @@ def my_clubs(request):
     }
 
     return render(request, template_name='clubs_app/list_club.html', context=context)
+
+
+def show_articles(request, slug_club):
+    articles = ArticleClubModel.objects.filter(club_contains=ClubModel.objects.get(slug_club=slug_club))
+
+    context = {
+        'slug_club': slug_club,
+        'articles': articles,
+    }
+    return render(request, template_name='clubs_app/show_articles.html', context=context)

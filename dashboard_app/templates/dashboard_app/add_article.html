@@ -17,6 +17,7 @@
 {% endblock title_body %}
 
 {% block content %}
+    <a class="btn btn-outline-primary" href="{% url 'clubs_app:show_articles' slug_club=slug_club  %}">Смотреть мои статьи</a><br><br>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form_ck.media }}
         {{ form_ck.as_p }}

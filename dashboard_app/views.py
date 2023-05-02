@@ -24,6 +24,7 @@ def members(request, slug_club):
     context = {
         'members': club.member.all(),
         'slug_club': slug_club,
+        'club_name': club.title_club,
     }
     return render(request, template_name='dashboard_app/members.html', context=context)
 
@@ -64,6 +65,8 @@ def index(request, slug_club):
     context = {
         'form': form_change_club_data,
         'slug_club': slug_club,
+        'club_name': club.title_club,
+
     }
 
     return render(request, template_name='dashboard_app/index.html', context=context)
@@ -116,5 +119,6 @@ def add_article(request, slug_club):
     context = {
         'slug_club': slug_club,
         'form_ck': form_title,
+        'club_name': ClubModel.objects.get(slug_club=slug_club).title_club,
     }
     return render(request, template_name='dashboard_app/add_article.html', context=context)

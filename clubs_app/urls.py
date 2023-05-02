@@ -11,6 +11,7 @@ urlpatterns = [
     path('list_club/<slug:cat_slug>', list_club, name='list_club'),
     path('join_club/<int:club_id>', join_club, name='join_club'),
     path('my_clubs/', my_clubs, name='my_clubs'),
+    path('show_content/<slug:slug_club>/acticles', show_articles, name='show_articles')
 ]
 
 if settings.DEBUG:
