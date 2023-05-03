@@ -100,7 +100,7 @@ def add_article(request, slug_club):
         if form_title.is_valid():
             model_article = ArticleClubModel.objects.create(
                 title_article=form_title.instance.title_article,
-                slug=slugify(form_title.instance.title_article),
+                slug_article=slugify(form_title.instance.title_article),
                 author_user=request.user,
                 club_contains=ClubModel.objects.get(slug_club=slug_club),
                 text_body=form_title.instance.text_body,

@@ -14,8 +14,8 @@ class CatClubModelAdmin(admin.ModelAdmin):
 
 
 class ArticleClubAdmin(admin.ModelAdmin):
-    list_display = ('title_article', 'slug', 'author_user', 'club_contains')
-    list_display_links = ('title_article', 'slug', 'author_user', 'club_contains')
+    list_display = ('title_article', 'slug_article', 'author_user', 'club_contains')
+    list_display_links = ('title_article', 'slug_article', 'author_user', 'club_contains')
 
 
 admin.site.register(ClubModel, ClubModelAdmin)

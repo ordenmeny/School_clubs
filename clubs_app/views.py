@@ -79,3 +79,16 @@ def show_articles(request, slug_club):
         'articles': articles,
     }
     return render(request, template_name='clubs_app/show_articles.html', context=context)
+
+
+def detail_articles(request, slug_article):
+    article = ArticleClubModel.objects.get(slug_article=slug_article)
+
+    context = {
+        'title_article': article.title_article,
+        'text_body': article.text_body,
+        'author_user': article.author_user,
+        'image': article.image,
+        'slug_club': article.club_contains.slug_club,
+    }
+    return render(request, template_name='clubs_app/detail_articles.html', context=context)

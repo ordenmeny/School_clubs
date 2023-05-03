@@ -1,0 +1,26 @@
+{% extends 'clubs_app/base/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+{% endblock %}
+{% block title %}Смотреть контент{% endblock title %}
+
+{% block content %}<br><br>
+        {% include 'clubs_app/base/nav.html' %}
+
+
+    <div class="container">
+        <div class="card mb-3" style="border: 1px solid #b8b8b8">
+            <img src="{{ image.url }}" class="card-img-top" width="100%">
+            <div class="card-body"><br>
+                <h2 class="card-title">{{ title_article }}</h2>
+                <p class="card-text">{{ text_body|safe }}</p><br>
+                <p class="card-text"><a class="btn btn-outline-secondary"
+                                        href="{% url 'clubs_app:show_articles' slug_club %}">Назад</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}
