@@ -26,12 +26,11 @@
                         Клубы
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Панель управления</a></li>
                         <li><a class="dropdown-item" href="{% url 'clubs_app:my_clubs' %}">Мои клубы</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Создать клуб</a></li>
+                        <li><a class="dropdown-item" href="{% url 'clubs_app:create_club' %}">Создать клуб</a></li>
                     </ul>
                 </li>
             </ul>

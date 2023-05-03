@@ -15,6 +15,8 @@
             <div class="card-body"><br>
                 <h2 class="card-title">{{ title_article }}</h2>
                 <p class="card-text">{{ text_body|safe }}</p><br>
+                <p class="card-text">Автор: {{ author_user }}</p>
+
                 <p class="card-text"><a class="btn btn-outline-secondary"
                                         href="{% url 'clubs_app:show_articles' slug_club %}">Назад</a></p>
             </div>

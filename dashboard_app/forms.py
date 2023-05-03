@@ -1,5 +1,5 @@
 from django import forms
-from clubs_app.models import ClubModel, ArticleClubModel
+from clubs_app.models import *
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -38,4 +38,15 @@ class ArticleClubForm(forms.ModelForm):
         widgets = {
             'title_article': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
             'image': forms.FileInput(attrs={'class': 'form-control form-control-lg'})
+        }
+
+
+class MessageAddForm(forms.ModelForm):
+    class Meta:
+        model = MessageClub
+        fields = ('title_msg', 'body_msg')
+
+        widgets = {
+            'title_msg': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'body_msg': forms.Textarea(attrs={'class': 'form-control', 'rows': 4})
         }

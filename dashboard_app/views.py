@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from clubs_app.models import ClubModel
-from .forms import ChangeClubData, ArticleClubForm
+from .forms import ChangeClubData, ArticleClubForm, MessageAddForm
 from django.contrib import messages
-from clubs_app.models import ArticleClubModel, ClubModel
+from clubs_app.models import ArticleClubModel, ClubModel, MessageClub
 from pytils.translit import slugify
+from datetime import date
 
 
 def check_user_club(request, slug_club):
@@ -111,6 +111,7 @@ def add_article(request, slug_club):
             return redirect('dashboard_app:add_article', slug_club=slug_club)
 
         else:
+            form_title = ArticleClubForm()
             messages.success(request, 'Ошибка')
             redirect('dashboard_app:add_article', slug_club=slug_club)
     else:
@@ -122,3 +123,37 @@ def add_article(request, slug_club):
         'club_name': ClubModel.objects.get(slug_club=slug_club).title_club,
     }
     return render(request, template_name='dashboard_app/add_article.html', context=context)
+
+
+@login_required
+def message(request, slug_club):
+    if check_user_club(request, slug_club):
+        messages.success(request, 'Доступ закрыт')
+        return check_user_club(request, slug_club)
+    if request.method == 'POST':
+        form_msg = MessageAddForm(request.POST)
+
+        if form_msg.is_valid():
+            model_msg = MessageClub.objects.create(
+                sender=request.user,
+                sender_club=ClubModel.objects.get(slug_club=slug_club),
+                slug_msg=slugify(f'{form_msg.instance.title_msg}{date.today()}'),
+                title_msg=form_msg.instance.title_msg,
+                body_msg=form_msg.instance.body_msg,
+            )
+            model_msg.save()
+            messages.success(request, 'Сообщение отправлено')
+            return redirect('dashboard_app:message', slug_club=slug_club)
+        else:
+            form_msg = MessageAddForm()
+            messages.success(request, 'Ошибка')
+            return redirect('dashboard_app:message', slug_club=slug_club)
+    else:
+        form_msg = MessageAddForm()
+
+    context = {
+        'slug_club': slug_club,
+        'form_msg': form_msg,
+        'club_name': ClubModel.objects.get(slug_club=slug_club).title_club,
+    }
+    return render(request, template_name='dashboard_app/add_msg.html', context=context)

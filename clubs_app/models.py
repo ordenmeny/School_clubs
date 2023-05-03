@@ -1,7 +1,20 @@
+from datetime import date
+
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from ckeditor.fields import RichTextField
+
+
+class MessageClub(models.Model):
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
+    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, null=True)
+    slug_msg = models.SlugField(unique=True, max_length=512)
+
+    title_msg = models.CharField(max_length=128, verbose_name='Заголовок сообщения')
+    body_msg = models.TextField(null=True, verbose_name='Сообщение')
+    date_load = models.DateField(default=date.today())
 
 
 class ClubModel(models.Model):

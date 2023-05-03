@@ -87,7 +87,7 @@ def detail_articles(request, slug_article):
     context = {
         'title_article': article.title_article,
         'text_body': article.text_body,
-        'author_user': article.author_user,
+        'author_user': article.author_user.username,
         'image': article.image,
         'slug_club': article.club_contains.slug_club,
     }
