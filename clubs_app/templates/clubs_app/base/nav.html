@@ -4,7 +4,7 @@
                href="{% url 'clubs_app:show_articles' slug_club=slug_club %}"
                style="font-weight:400">Статьи</a>
             <a class="nav-link" href="#" style="font-weight:400">Новости</a>
-            <a class="nav-link" href="#" style="font-weight:400">Сообщения</a>
+            <a class="nav-link" href="{% url 'clubs_app:show_messages' slug_club=slug_club %}" style="font-weight:400">Сообщения</a>
             <a class="nav-link" href="{% url 'dashboard_app:add_article' slug_club=slug_club %}" style="font-weight:400">Панель управления</a>
         </nav>
 </div><br><br>

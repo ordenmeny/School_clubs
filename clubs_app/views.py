@@ -92,3 +92,13 @@ def detail_articles(request, slug_article):
         'slug_club': article.club_contains.slug_club,
     }
     return render(request, template_name='clubs_app/detail_articles.html', context=context)
+
+
+def show_messages(request, slug_club):
+
+    context = {
+        'slug_club': slug_club,
+        'messages': MessageClub.objects.filter(sender_club=ClubModel.objects.get(slug_club=slug_club))
+    }
+
+    return render(request, template_name='clubs_app/show_messages.html', context=context)

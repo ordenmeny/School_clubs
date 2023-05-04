@@ -8,13 +8,17 @@ from ckeditor.fields import RichTextField
 
 class MessageClub(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
-    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, null=True)
+                               on_delete=models.CASCADE, verbose_name='Отправитель')
+    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, null=True, verbose_name='Клуб')
     slug_msg = models.SlugField(unique=True, max_length=512)
 
     title_msg = models.CharField(max_length=128, verbose_name='Заголовок сообщения')
     body_msg = models.TextField(null=True, verbose_name='Сообщение')
-    date_load = models.DateField(default=date.today())
+    date_load = models.DateField(default=date.today(), verbose_name='Дата')
+
+    class Meta:
+        verbose_name = 'Сообщения клубов'
+        verbose_name_plural = 'Сообщения клубов'
 
 
 class ClubModel(models.Model):

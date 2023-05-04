@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ClubModel, CatClubModel, ArticleClubModel
+from .models import *
 
 
 class ClubModelAdmin(admin.ModelAdmin):
@@ -18,6 +18,12 @@ class ArticleClubAdmin(admin.ModelAdmin):
     list_display_links = ('title_article', 'slug_article', 'author_user', 'club_contains')
 
 
+class MessageClubAdmin(admin.ModelAdmin):
+    list_display = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
+    list_display_links = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
+
+
 admin.site.register(ClubModel, ClubModelAdmin)
 admin.site.register(CatClubModel, CatClubModelAdmin)
 admin.site.register(ArticleClubModel, ArticleClubAdmin)
+admin.site.register(MessageClub, MessageClubAdmin)

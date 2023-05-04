@@ -13,6 +13,7 @@ urlpatterns = [
     path('my_clubs/', my_clubs, name='my_clubs'),
     path('show_content/<slug:slug_club>/acticles/', show_articles, name='show_articles'),
     path('show_content/acticles/<slug:slug_article>/', detail_articles, name='detail_articles'),
+    path('show_content/<slug:slug_club>/messages/', show_messages, name='show_messages'),
 ]
 
 if settings.DEBUG:
