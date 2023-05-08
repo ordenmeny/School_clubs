@@ -14,13 +14,13 @@ class CatClubModelAdmin(admin.ModelAdmin):
 
 
 class ArticleClubAdmin(admin.ModelAdmin):
-    list_display = ('title_article', 'slug_article', 'author_user', 'club_contains')
-    list_display_links = ('title_article', 'slug_article', 'author_user', 'club_contains')
+    list_display = ('title_article', 'slug_content', 'author_user', 'club_contains')
+    list_display_links = ('title_article', 'slug_content', 'author_user', 'club_contains')
 
 
 class MessageClubAdmin(admin.ModelAdmin):
-    list_display = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
-    list_display_links = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
+    list_display = ('author_user', 'club_contains', 'slug_content', 'title_msg', 'body_msg', 'date_load')
+    list_display_links = ('author_user', 'club_contains', 'slug_content', 'title_msg', 'body_msg', 'date_load')
 
 
 

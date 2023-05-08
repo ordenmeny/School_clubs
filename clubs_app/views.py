@@ -84,7 +84,7 @@ def show_articles(request, slug_club):
 
 
 def detail_articles(request, slug_article):
-    article = ArticleClubModel.objects.get(slug_article=slug_article)
+    article = ArticleClubModel.objects.get(slug_content=slug_article)
 
     context = {
         'title_article': article.title_article,
@@ -99,7 +99,7 @@ def detail_articles(request, slug_article):
 def show_messages(request, slug_club):
     context = {
         'slug_club': slug_club,
-        'messages': MessageClub.objects.filter(sender_club=ClubModel.objects.get(slug_club=slug_club))
+        'messages': MessageClub.objects.filter(club_contains=ClubModel.objects.get(slug_club=slug_club))
     }
 
     return render(request, template_name='clubs_app/show_messages.html', context=context)

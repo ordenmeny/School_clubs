@@ -100,7 +100,7 @@ def add_article(request, slug_club):
         if form_title.is_valid():
             model_article = ArticleClubModel.objects.create(
                 title_article=form_title.instance.title_article,
-                slug_article=slugify(form_title.instance.title_article),
+                slug_content=slugify(form_title.instance.title_article),
                 author_user=request.user,
                 club_contains=ClubModel.objects.get(slug_club=slug_club),
                 text_body=form_title.instance.text_body,
@@ -135,9 +135,9 @@ def message(request, slug_club):
 
         if form_msg.is_valid():
             model_msg = MessageClub.objects.create(
-                sender=request.user,
-                sender_club=ClubModel.objects.get(slug_club=slug_club),
-                slug_msg=slugify(f'{form_msg.instance.title_msg}{date.today()}'),
+                author_user=request.user,
+                club_contains=ClubModel.objects.get(slug_club=slug_club),
+                slug_content=slugify(f'{form_msg.instance.title_msg}{date.today()}'),
                 title_msg=form_msg.instance.title_msg,
                 body_msg=form_msg.instance.body_msg,
             )
@@ -158,13 +158,13 @@ def message(request, slug_club):
     return render(request, template_name='dashboard_app/add_msg.html', context=context)
 
 
-MODEL_DICT = {'articleclubmodel': ArticleClubModel}
+MODEL_DICT = {'articleclubmodel': ArticleClubModel, 'messageclub': MessageClub}
 
 
 @login_required
 def delete_content(request, model_name, content_slug):
-    if MODEL_DICT[model_name].objects.get(slug_article=content_slug).author_user == request.user:
-        model = MODEL_DICT[model_name].objects.get(slug_article=content_slug).delete()
+    if MODEL_DICT[model_name].objects.get(slug_content=content_slug).author_user == request.user:
+        model = MODEL_DICT[model_name].objects.get(slug_content=content_slug).delete()
         messages.success(request, 'Удалено')
         try:
             return redirect(request.META.get('HTTP_REFERER'))  # редирект на предыдущую страницу

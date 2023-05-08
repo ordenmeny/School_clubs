@@ -6,10 +6,10 @@ import django
 
 
 class MessageClub(models.Model):
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL,
+    author_user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE, verbose_name='Отправитель')
-    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, verbose_name='Клуб', null=True)
-    slug_msg = models.SlugField(unique=True, max_length=512)
+    club_contains = models.ForeignKey('ClubModel', on_delete=models.CASCADE, verbose_name='Клуб', null=True)
+    slug_content = models.SlugField(unique=True, max_length=512)
 
     title_msg = models.CharField(null=True, blank=False, max_length=128, verbose_name='Заголовок сообщения')
     body_msg = models.TextField(null=True, blank=False, verbose_name='Сообщение')
@@ -18,6 +18,34 @@ class MessageClub(models.Model):
     class Meta:
         verbose_name = 'Сообщения клубов'
         verbose_name_plural = 'Сообщения клубов'
+
+    def get_delete_url(self):
+        return reverse('dashboard_app:delete_content',
+                       kwargs={'model_name': 'messageclub', 'content_slug': self.slug_content})
+
+
+class ArticleClubModel(models.Model):
+    author_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    club_contains = models.ForeignKey('ClubModel', on_delete=models.CASCADE, null=True)
+    slug_content = models.SlugField(max_length=255, unique=True)
+
+    title_article = models.CharField(max_length=128, verbose_name='Заголовок статьи', unique=True, blank=False)
+    text_body = RichTextField(blank=False, null=True, verbose_name='Контент статьи')
+    image = models.ImageField(upload_to='articles/', null=True, blank=False, verbose_name='Главное изображение статьи')
+
+    def __str__(self):
+        return self.title_article
+
+    class Meta:
+        verbose_name = 'Статьи клубов'
+        verbose_name_plural = 'Статьи клубов'
+
+    def get_absolute_url(self):
+        return reverse('clubs_app:detail_articles', kwargs={'slug_article': self.slug_content})
+
+    def get_delete_url(self):
+        return reverse('dashboard_app:delete_content',
+                       kwargs={'model_name': 'articleclubmodel', 'content_slug': self.slug_content})
 
 
 class ClubModel(models.Model):
@@ -56,26 +84,3 @@ class CatClubModel(models.Model):
     class Meta:
         verbose_name = 'Категории клубов'
         verbose_name_plural = 'Категории клубов'
-
-
-class ArticleClubModel(models.Model):
-    title_article = models.CharField(max_length=128, verbose_name='Заголовок статьи', unique=True, blank=False)
-    slug_article = models.SlugField(max_length=255, unique=True)
-    author_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    club_contains = models.ForeignKey(ClubModel, on_delete=models.CASCADE, null=True)
-    text_body = RichTextField(blank=False, null=True, verbose_name='Контент статьи')
-    image = models.ImageField(upload_to='articles/', null=True, blank=False, verbose_name='Главное изображение статьи')
-
-    def __str__(self):
-        return self.title_article
-
-    class Meta:
-        verbose_name = 'Статьи клубов'
-        verbose_name_plural = 'Статьи клубов'
-
-    def get_absolute_url(self):
-        return reverse('clubs_app:detail_articles', kwargs={'slug_article': self.slug_article})
-
-    def get_delete_url(self):
-        return reverse('dashboard_app:delete_content',
-                       kwargs={'model_name': 'articleclubmodel', 'content_slug': self.slug_article})
