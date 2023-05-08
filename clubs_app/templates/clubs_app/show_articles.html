@@ -7,6 +7,19 @@
 
 {% block content %}<br><br>
     {% include 'clubs_app/base/nav.html' %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="container">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <strong>{{ message }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% for article in articles %}
         <div class="container">
@@ -15,8 +28,17 @@
                 <div class="card-body"><br>
                     <h2 class="card-title">{{ article.title_article }}</h2>
                     <p class="card-text">{{ article.text_body|safe|linebreaks|truncatechars:400 }}</p><br>
-                    <p class="card-text"><a class="btn btn-outline-secondary" href="{{ article.get_absolute_url }}">Читать
-                        далее</a></p>
+                    <p class="card-text">
+                        <a class="btn btn-outline-secondary" href="{{ article.get_absolute_url }}">Читать
+                        далее {{ article.manager }}</a>
+
+
+                    {% if request.user == article.author_user %}
+                        <a class="btn btn-outline-danger" href="{{ article.get_delete_url }}">Удалить</a>
+                    {% endif %}
+
+
+                    </p>
                 </div>
             </div>
         </div><br>

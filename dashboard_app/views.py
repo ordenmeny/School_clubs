@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import ChangeClubData, ArticleClubForm, MessageAddForm
 from django.contrib import messages
-from clubs_app.models import ArticleClubModel, ClubModel, MessageClub
+from clubs_app.models import *
 from pytils.translit import slugify
 from datetime import date
 
@@ -145,7 +145,6 @@ def message(request, slug_club):
             messages.success(request, 'Сообщение отправлено')
             return redirect('dashboard_app:message', slug_club=slug_club)
         else:
-            form_msg = MessageAddForm()
             messages.success(request, 'Ошибка')
             return redirect('dashboard_app:message', slug_club=slug_club)
     else:
@@ -157,3 +156,20 @@ def message(request, slug_club):
         'club_name': ClubModel.objects.get(slug_club=slug_club).title_club,
     }
     return render(request, template_name='dashboard_app/add_msg.html', context=context)
+
+
+MODEL_DICT = {'articleclubmodel': ArticleClubModel}
+
+
+@login_required
+def delete_content(request, model_name, content_slug):
+    if MODEL_DICT[model_name].objects.get(slug_article=content_slug).author_user == request.user:
+        model = MODEL_DICT[model_name].objects.get(slug_article=content_slug).delete()
+        messages.success(request, 'Удалено')
+        try:
+            return redirect(request.META.get('HTTP_REFERER'))  # редирект на предыдущую страницу
+        except:
+            return redirect('clubs_app:home_page')
+    else:
+        messages.success(request, 'Ошибка')
+        return redirect('clubs_app:home_page')

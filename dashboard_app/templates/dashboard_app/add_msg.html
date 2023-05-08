@@ -17,10 +17,19 @@
 {% endblock title_body %}
 
 {% block content %}
-    <a class="btn btn-outline-primary" href="{% url 'clubs_app:show_messages' slug_club=slug_club  %}">Смотреть мои сообщения</a><br><br>
+    <a class="btn btn-outline-primary" href="{% url 'clubs_app:show_messages' slug_club=slug_club %}">Смотреть мои
+        сообщения</a><br><br>
 
     <form method="post">{% csrf_token %}
-        {{ form_msg.as_p }}
+        {% for f in form_msg %}
+            <div class="mb-3">
+                <label class="form-label" style="font-size: 20px">{{ f.label }}</label>
+                {{ f }}
+                {{ f.errors }}
+                <div class="form-text">{{ f.errors }}</div>
+            </div>
+        {% endfor %}
+
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
 {% endblock content %}

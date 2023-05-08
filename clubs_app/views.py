@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.views.generic import TemplateView
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from pytils.translit import slugify
 from django.db.models import Q
+from django.apps import apps
 
 
-# @login_required
 def index(request):
     clubs_cat = CatClubModel.objects.all()
     context = {

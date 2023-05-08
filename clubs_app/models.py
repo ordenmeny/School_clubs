@@ -1,20 +1,19 @@
-from datetime import date
-
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from ckeditor.fields import RichTextField
+import django
 
 
 class MessageClub(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE, verbose_name='Отправитель')
-    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, null=True, verbose_name='Клуб')
+    sender_club = models.ForeignKey('ClubModel', on_delete=models.CASCADE, verbose_name='Клуб', null=True)
     slug_msg = models.SlugField(unique=True, max_length=512)
 
-    title_msg = models.CharField(max_length=128, verbose_name='Заголовок сообщения')
-    body_msg = models.TextField(null=True, verbose_name='Сообщение')
-    date_load = models.DateField(default=date.today(), verbose_name='Дата')
+    title_msg = models.CharField(null=True, blank=False, max_length=128, verbose_name='Заголовок сообщения')
+    body_msg = models.TextField(null=True, blank=False, verbose_name='Сообщение')
+    date_load = models.DateField(default=django.utils.timezone.now, verbose_name='Дата')
 
     class Meta:
         verbose_name = 'Сообщения клубов'
@@ -60,12 +59,12 @@ class CatClubModel(models.Model):
 
 
 class ArticleClubModel(models.Model):
-    title_article = models.CharField(max_length=128, verbose_name='Заголовок статьи', unique=True)
+    title_article = models.CharField(max_length=128, verbose_name='Заголовок статьи', unique=True, blank=False)
     slug_article = models.SlugField(max_length=255, unique=True)
     author_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     club_contains = models.ForeignKey(ClubModel, on_delete=models.CASCADE, null=True)
-    text_body = RichTextField(blank=True, null=True, verbose_name='Контент статьи')
-    image = models.ImageField(upload_to='articles/', null=True, verbose_name='Главное изображение статьи')
+    text_body = RichTextField(blank=False, null=True, verbose_name='Контент статьи')
+    image = models.ImageField(upload_to='articles/', null=True, blank=False, verbose_name='Главное изображение статьи')
 
     def __str__(self):
         return self.title_article
@@ -76,3 +75,7 @@ class ArticleClubModel(models.Model):
 
     def get_absolute_url(self):
         return reverse('clubs_app:detail_articles', kwargs={'slug_article': self.slug_article})
+
+    def get_delete_url(self):
+        return reverse('dashboard_app:delete_content',
+                       kwargs={'model_name': 'articleclubmodel', 'content_slug': self.slug_article})

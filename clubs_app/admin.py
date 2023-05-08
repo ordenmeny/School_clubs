@@ -3,8 +3,8 @@ from .models import *
 
 
 class ClubModelAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title_club', 'cat_club', 'slug_club')
-    list_display_links = ('title_club', 'cat_club', 'slug_club')
+    list_display = ('id', 'title_club', 'cat_club', 'slug_club', 'manager')
+    list_display_links = ('title_club', 'cat_club', 'slug_club', 'manager')
 
 
 class CatClubModelAdmin(admin.ModelAdmin):
@@ -21,6 +21,7 @@ class ArticleClubAdmin(admin.ModelAdmin):
 class MessageClubAdmin(admin.ModelAdmin):
     list_display = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
     list_display_links = ('sender', 'sender_club', 'slug_msg', 'title_msg', 'body_msg', 'date_load')
+
 
 
 admin.site.register(ClubModel, ClubModelAdmin)

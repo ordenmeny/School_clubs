@@ -42,6 +42,10 @@ class ArticleClubForm(forms.ModelForm):
 
 
 class MessageAddForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title_msg'].label = 'Заголовок сообщения'
+
     class Meta:
         model = MessageClub
         fields = ('title_msg', 'body_msg')
