@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'dashboard_app',
     'ckeditor',
+    'duty_app',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
+
 
 USE_I18N = True
 

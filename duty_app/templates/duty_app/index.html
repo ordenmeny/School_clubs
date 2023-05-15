@@ -1,0 +1,37 @@
+{% extends "duty_app/base/base.html" %}
+{% block content %}
+<ol class="list-group list-group-numbered">
+
+    {% for person in person_model %}
+
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{person.name}}</div>
+            {% if person.active %}
+            {{ person.date_duty }}
+
+            {% else %}
+            <p>Не дежурил</p>
+
+            {% endif %}
+
+
+
+        </div>
+        <span class="badge rounded-pill">
+
+            {% if person.active == True %}
+            <a onclick="return confirm('Вы уверены, что хотите выполнить это действие?')" type="button" class="btn btn-success btn-sm" href="{% url 'duty_app:action_duty' type_action='from_duty' id_person=person.id %}">Дежурил</a>
+
+            {% else %}
+            <a onclick="return confirm('Вы уверены, что хотите выполнить это действие?')" type="button" class="btn btn-danger btn-sm" href="{% url 'duty_app:action_duty' type_action='to_duty' id_person=person.id %}">Не дежурил</a>
+
+            {% endif %}
+
+
+        </span>
+    </li>
+    {% endfor %}
+</ol>
+
+{% endblock %}
