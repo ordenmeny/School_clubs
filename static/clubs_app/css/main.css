@@ -1,0 +1,207 @@
+.btn-join-club-intro{
+  background-color: #223A76;
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  color: white;
+  border-radius: 39px;
+  border: 4px solid white;
+    width: 100%;
+}
+
+@media screen and (min-width:800px){
+    .btn-join-club-intro{
+        width: 640px;
+    }
+}
+
+
+.nav-link{
+    color: black;
+    font-weight: 600;
+}
+
+
+.btn-regist{
+    background-color: #223A76;
+    color: white;
+    border-radius:20%;
+    border:4px solid #223A76;
+    line-height: normal;
+}
+
+.btn-regist:hover{
+  background-color: #223A76;
+  color: white;
+  border-radius:20%;
+  border:4px solid #223A76;
+  line-height: normal;
+}
+
+.btn-signin{
+  background-color: #ffffff;
+  color: #223A76;
+  border-radius:20%;
+  border:4px solid #223A76;
+  line-height: normal;
+}
+
+.btn-signin:hover{
+    background-color: #ffffff;
+    color: #223A76;
+    border-radius:20%;
+    border:4px solid #223A76;
+    line-height: normal;
+}
+
+
+
+
+@media (min-width: 1200px) {
+    .nav-link {
+      font-size: 25px;
+    }
+  }
+
+  @media (min-width: 1070px) and (max-width: 1999px) {
+    .nav-link {
+      font-size: 23px;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1069px) {
+    .nav-link {
+      font-size: 20px;
+    }
+    .logo-adaptive{
+        width: 230px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .nav-link {
+      font-size: 20px;
+    }
+    .logo-adaptive{
+        width: 200px;
+    }
+  }
+
+  @media (max-width: 768px){
+    .logo-adaptive{
+        width: 200px;
+    }
+  }
+
+  @media (min-width: 992px){
+    .btn-sm{
+        display: none;
+    }
+  }
+  @media (max-width: 991px){
+    .btn-lg{
+        display: none;
+    }
+  }
+
+
+  @media (min-width: 850px) and (max-width:991px) {
+    .container-900 {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 720px;
+    }
+  }
+
+
+@media (min-width: 768px){
+    .height-navbar{
+        height: 98px;
+    }
+}
+
+
+.btn-join-club-intro:hover{
+  background-color: #223A76;
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+  color: white;
+  border-radius: 39px;
+  border: 4px solid white;
+}
+
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.intro-block-links{
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.card {
+  border: none;
+}
+
+.support-block-text{
+  display: inline-block;
+  max-width: 100%;
+}
+
+
+@media(max-width:1621px){
+  .adaptive-footer-logo{
+    width:100%;
+  }
+}
+
+@media (min-width:992px) {
+  .hide-992{
+    display: none;
+  }
+}
+
+
+.style-placeholder::placeholder{
+    font-size:30px;
+    color: black;
+    font-weight: 400;
+
+}
+
+
+.textarea-style{
+     width: 100%;
+  height: 200px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+.create-club-btn,
+.create-club-btn:hover,
+.create-club-btn:active {
+    background-color: #223A76 !important;
+    color: white !important;
+    border-radius:20px !important;
+    border:4px solid #223A76 !important;
+    font-size:30px !important;
+
+}
+
+@media screen and (max-width:570px){
+    h2{
+        font-size: 45px !important;
+    }
+}
